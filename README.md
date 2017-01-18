@@ -12,10 +12,11 @@ We will use the microsoft/azure-cli docker image throughout the documentation 
 
 ## Prerequisites
 
-Prior to getting started, please ensure you have the following installed in your local linux/unix environment. 
+Prior to getting started, please ensure you have the following installed in your local linux/unix environment.
+- [Docker](https://www.docker.com/products/overview) (Optional but highly recommended if you plan to test your codeship-steps and codeship-services.yml files locally)
 - [Jet Codeship's CLI](https://documentation.codeship.com/pro/getting-started/installation/)
-- [Docker](https://www.docker.com/products/overview)
 - [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install)
+- [Git](https://git-scm.com/downloads)
 
 It is strongly recommended to fork this repo, or download the files separately. 
 
@@ -29,17 +30,23 @@ While the container we provide for interacting with Azure gives you an easy and 
 
 Before setting up the codeship-services.yml and codeship-steps.yml file we’re going to create an encrypted environment file that contains a service principal, password, and tenant ID.
 
+You will first need to get your AES key from Codeship to encrypt your environment files. Take a look at CodeShip's [encrypted environment files documentation](https://documentation.codeship.com/pro/getting-started/encryption/), specifically the 'Getting the Key' section and download/save the key as 'codeship.aes'. Next, you need to add it to your .gitnore file by typing the following.
+
+```
+echo "codeship.aes" >> .gitignore
+```
+
 #### Azure Authentication
-Take a look at CodeShip's [encrypted environment files documentation](https://documentation.codeship.com/pro/getting-started/encryption/) and add a azure.env.encrypted file to your repository. The file needs to contain an encrypted version of the following file:
+We have created a script to help you get started after you obtain your AES key from Codeship. The azure.env file needs to contain an encrypted version of the following data:
 
 ```
 spn=service_principal_name
 password=service_principal_password
 tenant=azure_tenant_id
 ```
-You can get the spn, password, and tenant ID from running the [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh) on your local machine with Azure-Cli installed.
+You can get the spn, password, and tenant ID from running the [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh) on your local machine with Azure-Cli installed. You do not have to add the .env files to your .gitignore file as the creation script will do so for you.
 
-To learn more about the script, [click here](local_scripts/create_serviceprincipal.md).
+It is higly recommended you  [click here](local_scripts/create_serviceprincipal.md) to learn how to use the service principal creation script.
 
 #### Virtual Machine Authentication
 
@@ -73,7 +80,7 @@ Take a look at the [Steps](https://documentation.codeship.com/pro/getting-start
 
 The following script will use the [Azure GitHub QuickStart Templates](https://github.com/Azure/azure-quickstart-templates) to deploy your new Docker virtual machine and resourece group. The deployment script can access any files in your repository through /deploy. To confirm, the [Azure Deployment Script](deployment/azure_deploy.sh), stands up an AzureRM resource group with all necessary dependencies for an Ubuntu 16.04 image with Docker pre-installed. 
 
-Disclaimer: It is always recommended to read any script thoroughly before exectuting it in your environment. These scripts are provided for demo purposes only.
+Disclaimer: It is always recommended to read any script thoroughly before executing it in your environment. These scripts are provided for demo purposes only.
 
 ### Azure Docker App Deployment Service Definition and Examples
 
@@ -91,7 +98,7 @@ To interact with the service, we will create a step that will call the [Azure Ap
 
 Note: The demo maps port 80:8080 for the node app running the container.
 
-Disclaimer: It is always recommended to read any script thoroughly before exectuting it in your environment. These scripts are provided for demo purposes only.
+Disclaimer: It is always recommended to read any script thoroughly before executing it in your environment. These scripts are provided for demo purposes only.
 
 ### See also
 

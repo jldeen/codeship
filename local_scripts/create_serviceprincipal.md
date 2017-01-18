@@ -6,7 +6,13 @@ To make it easy for you to deploy your application to Azure, we've built a scrip
 
 In order to encrypt the azure authentication file, you will need to [install the CodeShip jet CLI locally first](https://documentation.codeship.com/pro/getting-started/installation/).
 
-After you install the jet CLI, you will need to get you CodeShip AES key.
+After you install the jet CLI, you will need to get your CodeShip AES key.
+
+In order to run the script, you need the following installed:
+
+- JET CLI
+- Azure CLI
+- JQ
 
 ### Getting the key
 
@@ -42,30 +48,37 @@ password=service_principal_password
 tenant=azure_tenant_id
 ```
 
-To help you get started, we have created a [Service Principal Creation Script](https://raw.githubusercontent.com/rachelnicole/cs50-ascend/JD-Dev/scripts/serviceprincipal.sh?token=AHUhNhoZGTiIPgVKCyAtyY1EmnJFj14Zks5Ydv7bwA%3D%3D), which needs to be run on your local machine. You will also need to have [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install) installed. 
+To help you get started, we have created a [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh), which needs to be run on your local machine. You will also need to have [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install) installed. 
 
 To run the script save it to the root of your repository and give it executable permissions:
 
 ```
-chmod +x serviceprincipal.sh
+chmod +x local_scripts/create_serviceprincipal.sh
 ```
+The above example assumes you are in the root of your repo. You will want to adjust the file path accordingly. It is recommended to run this script from root since you might need the encrypted env files available at the root, unless you specify a different path in your codeship-services.yml file.
 
 Then run the script: 
 ```
-./serviceprincipal.sh id_name_here password_here role_here
+./create_serviceprincipal.sh id_name_here password_here role_here
 ```
+or
+```
+local_scripts/create_serviceprincipal.sh id_name_here password_here role_here
+```
+```
+### Description of positional parameters
 
 id_name_here - Name of Service Principal (for your reference only)
-
 password_here - Password for service principal created
-
 role_here - Desired role see [RBAC: Built-in roles](https://docs.microsoft.com/azure/active-directory/role-based-access-built-in-roles)
+```
 
 Example:
 
 ```
-./serviceprincipal.sh AzureDemo PasswOrd!! Contributor
+./create_serviceprincipal.sh AzureDemo PasswOrd!! Contributor
 ```
+NOTE: Your password needs to be a minimum of 12 characters and have some complexity incorporated to it. See more here: [Azure Password Policies](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-passwords-policy)
 
 The spn creation script will create a service principal for you and assign it the role of Contributor. The script will then encrypt the environment file containing the service principal, password, and tenant ID for your Azure subscription for you and add the unencrypted one to your .gitignore file.
 
