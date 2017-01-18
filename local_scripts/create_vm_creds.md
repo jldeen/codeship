@@ -73,13 +73,5 @@ The unencrypted environment file will be saved as vm.env.
 
 The encrypted environment file will be saved as vm.env.encrypted.
 
-## See Also:
-
-- [Use Azure CLI to create a VM Credentials to access resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
-- [Use portal to create Active Directory application and VM Credentials that can access resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-create-service-principal-portal)
-- [Manage Role-Based Access Control with the Azure command-line interface](https://docs.microsoft.com/azure/active-directory/role-based-access-control-manage-access-azure-cli)
-- [RBAC: Built-in roles](https://docs.microsoft.com/azure/active-directory/role-based-access-built-in-roles)
-
-
 
 
