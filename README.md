@@ -15,7 +15,7 @@ We will use the microsoft/azure-cli docker image throughout the documentation 
 Prior to getting started, please ensure you have the following installed in your local linux/unix environment.
 - [Docker](https://www.docker.com/products/overview) (Optional but highly recommended if you plan to test your codeship-steps and codeship-services.yml files locally)
 - [Jet Codeship's CLI](https://documentation.codeship.com/pro/getting-started/installation/)
-- [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install)
+- [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install?WT.mc_id=devops-0000-jessde)
 - [Git](https://git-scm.com/downloads)
 
 It is strongly recommended to fork this repo, or download the files separately. 
@@ -74,7 +74,7 @@ azuredeployment:
   - ./:/deploy
 ```
 
-To interact with different Azure services you can simply call the Azure command directly. You can use any Azure service or command provided by the [AzureCLI](https://docs.microsoft.com/azure/xplat-cli-install). You can use environment variables or command arguments to set the Azure Datacentert Location or other parameters. Take a look at their (environment variable documentation](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates).
+To interact with different Azure services you can simply call the Azure command directly. You can use any Azure service or command provided by the [AzureCLI](https://docs.microsoft.com/azure/xplat-cli-install?WT.mc_id=devops-0000-jessde). You can use environment variables or command arguments to set the Azure Datacentert Location or other parameters. Take a look at their (environment variable documentation](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates?WT.mc_id=devops-0000-jessde).
 
 Take a look at the [Steps](https://documentation.codeship.com/pro/getting-started/steps/) documentation page so you have a good understanding how steps on Codeship work and how to set it up in your codeship-steps.yml.
 
@@ -102,5 +102,5 @@ Disclaimer: It is always recommended to read any script thoroughly before execut
 
 ### See also
 
-- [Create a Docker environment in Azure using the Docker VM extension](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-dockerextension)
+- [Create a Docker environment in Azure using the Docker VM extension](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-dockerextension?WT.mc_id=devops-0000-jessde)
  
